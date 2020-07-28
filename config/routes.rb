@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :stops
   resources :crawls
   resources :favorites
   resources :users

@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  crawl: one
+  pub_name: MyString
+  pub_address: MyString
+  brewery_latitude: 1.5
+  brewery_longitude: 1.5
+  website: MyString
+
+two:
+  crawl: two
+  pub_name: MyString
+  pub_address: MyString
+  brewery_latitude: 1.5
+  brewery_longitude: 1.5
+  website: MyString
