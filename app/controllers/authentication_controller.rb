@@ -1,4 +1,5 @@
 class AuthenticationController < ApplicationController
+    skip_before_action :authorized, only: [:login]
     def login 
         @user = User.find_by username: params[:user]['username']
 
@@ -9,7 +10,7 @@ class AuthenticationController < ApplicationController
             secret = Rails.application.secret_key_base
             @token = JWT.encode payload, secret 
 
-            render json: { token: @token }, status: :accepted
+            render json: { user: @user, token: @token }, status: :accepted
         end
     end
 end
