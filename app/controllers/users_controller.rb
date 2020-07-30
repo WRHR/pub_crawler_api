@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
     def profile 
-        render json: {user: current_user, favorites: current_user.favorites}
+        render json: {user: current_user, crawls: current_user.crawls, favorites: current_user.favorites}
     end
 
     def create

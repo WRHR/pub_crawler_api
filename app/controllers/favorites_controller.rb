@@ -8,7 +8,7 @@ class FavoritesController < ApplicationController
             user_id: @user.id
             )
 
-        render json: { favorite:@favorite, alert: 'Added to your Favorites' }, status: :created
+        render json: { favorite: @favorite, alert: 'Added to your Favorites' }, status: :created
     end
 
     def destroy

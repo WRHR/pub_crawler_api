@@ -1,18 +1,19 @@
 class CrawlsController < ApplicationController
     before_action :find_crawl, only: [:update, :destroy]
+    skip_before_action :authorized, only: [:index]
 
     def index
         @crawls = Crawl.all
-        render json: @crawls
+        render json: @crawls, include: [:user]
     end
 
     def create 
-        @crawl = Crawl.create(crawl_params, user: current_user)
+        @crawl = Crawl.create(name: params[:name], user_id: current_user.id)
         render json: { crawl: @crawl, alert: "Crawl Created" }, status: :created
     end
 
     def update
-        @crawl.update{ name: params[:name] }
+        @crawl.update( name: params[:name] )
 
         render json: { alert: "Crawl Updated" }, status: :accepted
     end
@@ -24,10 +25,6 @@ class CrawlsController < ApplicationController
     end
 
     private
-
-    def crawl_params
-        params.require(:crawl).permit(:name)
-    end
 
     def find_crawl
         @crawl = Crawl.find(params[:id])
