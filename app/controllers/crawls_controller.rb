@@ -1,8 +1,13 @@
 class CrawlsController < ApplicationController
     before_action :find_crawl, only: [:update, :destroy]
 
+    def index
+        @crawls = Crawl.all
+        render json: @crawls
+    end
+
     def create 
-        @crawl = Crawl.create(crawl_params)
+        @crawl = Crawl.create(crawl_params, user: current_user)
         render json: { crawl: @crawl, alert: "Crawl Created" }, status: :created
     end
 
@@ -21,7 +26,7 @@ class CrawlsController < ApplicationController
     private
 
     def crawl_params
-        params.require(:crawl).permit(:user_id, :name)
+        params.require(:crawl).permit(:name)
     end
 
     def find_crawl

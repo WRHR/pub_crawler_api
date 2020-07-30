@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_051046) do
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "pub_name"
+    t.integer "brewery_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_favorites_on_user_id"
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_051046) do
 
   create_table "stops", force: :cascade do |t|
     t.bigint "crawl_id", null: false
+    t.integer "brewery_id"
     t.string "pub_name"
     t.string "pub_address"
     t.float "brewery_latitude"

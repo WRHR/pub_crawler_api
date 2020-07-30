@@ -16,7 +16,7 @@ class StopsController < ApplicationController
     private
 
     def stop_params
-        params.require(:stop).permit(:crawl_id, :pub_name, :pub_address, :pub_latitude, :pub_longitude, :website)
+        params.require(:stop).permit(:crawl_id, :pub_name, :pub_address, :pub_latitude, :pub_longitude,)
     end
 
     def find_stop

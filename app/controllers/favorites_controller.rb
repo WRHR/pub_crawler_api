@@ -3,25 +3,22 @@ class FavoritesController < ApplicationController
 
     def create
         @favorite = Favorite.create(
-            user_id: params[:user_id],
-            pub_name: params[:pub_name]
-        )
+            brewery_id: params[:favorite]['brewery_id'],
+            pub_name: params[:favorite]['pub_name'],
+            user_id: @user.id
+            )
 
-        render json: { alert: 'Added to your Favorites' }, status: :created
+        render json: { favorite:@favorite, alert: 'Added to your Favorites' }, status: :created
     end
 
     def destroy
-        @favorite.desrtroy
+        @favorite.destroy
         render json: { alert: 'Removed from Favorites' }, status: :no_content
     end
 
     private
 
-    def favorite_params
-        params.require(:favorite).permit(:user_id, :pub_name)
-    end
-
     def find_favorite
-        @favorite = Favorite.find(params[:id})
+        @favorite = Favorite.find(params[:id])
     end
 end

@@ -3,6 +3,7 @@ class CreateFavorites < ActiveRecord::Migration[6.0]
     create_table :favorites do |t|
       t.references :user, null: false, foreign_key: true
       t.string :pub_name
+      t.integer :brewery_id
 
       t.timestamps
     end
