@@ -5,7 +5,7 @@ class StopsController < ApplicationController
     def create
         @stop = Stop.create(stop_params)
         
-        render json: {stop: @stop, alert: "Stop added to Crawl"}
+        render json: @stop, status: :created
     end
 
     def destroy
@@ -17,7 +17,7 @@ class StopsController < ApplicationController
     private
 
     def stop_params
-        params.require(:stop).permit(:crawl_id, :pub_name, :pub_address, :pub_latitude, :pub_longitude, :website)
+        params.require(:stop).permit(:crawl_id, :brewery_id, :pub_name, :pub_address, :brewery_latitude, :brewery_longitude, :website)
     end
 
     def find_stop
