@@ -13,7 +13,7 @@ class CrawlsController < ApplicationController
 
     def create 
         @crawl = Crawl.create(name: params[:name], user_id: current_user.id)
-        render json: { crawl: @crawl, alert: "Crawl Created" }, status: :created
+        render json: @crawl, status: :created
     end
 
     def update

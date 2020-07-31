@@ -1,6 +1,7 @@
 class StopsController < ApplicationController
     before_action :find_stop, only: [:destroy]
 
+
     def create
         @stop = Stop.create(stop_params)
         
@@ -16,7 +17,7 @@ class StopsController < ApplicationController
     private
 
     def stop_params
-        params.require(:stop).permit(:crawl_id, :pub_name, :pub_address, :pub_latitude, :pub_longitude,)
+        params.require(:stop).permit(:crawl_id, :pub_name, :pub_address, :pub_latitude, :pub_longitude, :website)
     end
 
     def find_stop
