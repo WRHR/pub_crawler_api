@@ -1,10 +1,14 @@
 class CrawlsController < ApplicationController
-    before_action :find_crawl, only: [:update, :destroy]
-    skip_before_action :authorized, only: [:index]
+    before_action :find_crawl, only: [:show, :update, :destroy]
+    skip_before_action :authorized, only: [:index, :show]
 
     def index
         @crawls = Crawl.all
         render json: @crawls, include: [:user]
+    end
+
+    def show
+        render json: {crawl: @crawl, stops: @crawl.stops}
     end
 
     def create 
